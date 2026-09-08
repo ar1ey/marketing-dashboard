@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cytron Technologies — Marketing Dashboard & Content Schedule</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+
+    <!-- ═══════════════ HEADER ═══════════════ -->
+    <header class="dashboard-header">
+        <div class="header-left">
+            <div class="brand-block">
+                <img src="cytron-logo.png" alt="Cytron Technologies" style="height: 80px;"
+                     onerror="this.style.display='none'; document.getElementById('brandNameFallback').style.display='block';">
+                <span id="brandNameFallback" class="brand-name" style="display:none;">Cytron Technologies</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="report-title">Social Media Marketing Dashboard</div>
+            <div class="report-period">Reporting Period: May – July 2026 · Generated 12 Aug 2026</div>
+            <span class="conf-badge"><i class="fa-solid fa-lock"></i> Confidential</span>
+        </div>
+    </header>
+
+    <!-- Overlay for expanded table -->
+    <div class="table-overlay" id="tableOverlay"></div>
+
+    <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+    <div class="container">
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <div>
+                <h2>Marketing Hub</h2>
+                <p>Social media performance analytics &amp; 7-day content plan</p>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <nav class="tab-navigation">
+            <button class="tab-button active" data-tab="dashboard"><i class="fa-solid fa-gauge-high"></i> Dashboard</button>
+            <button class="tab-button" data-tab="content-ideas"><i class="fa-solid fa-lightbulb"></i> Content Ideas & Schedule</button>
+        </nav>
+
+        <!-- ═══════════════ TAB 1 : DASHBOARD ═══════════════ -->
+        <div id="dashboard" class="tab-content active">
+
+            <!-- KPI Cards -->
+            <div class="kpi-grid">
+                <div class="kpi-card" style="--kpi-accent:#0055A4; --kpi-bg:rgba(0,85,164,0.10);">
+                    <div class="kpi-top">
+                        <span class="kpi-label">Total Reach</span>
+                        <span class="kpi-icon"><i class="fa-solid fa-chart-line"></i></span>
+                    </div>
+                    <div class="kpi-value" id="total-reach">0</div>
+                    <span class="kpi-trend up"><i class="fa-solid fa-arrow-up"></i> 12.4%</span>
+                    <div class="kpi-note">vs. previous month (1.14M)</div>
+                </div>
+                <div class="kpi-card" style="--kpi-accent:#ff7f2a; --kpi-bg:rgba(255,127,42,0.12);">
+                    <div class="kpi-top">
+                        <span class="kpi-label">Engagement Rate</span>
+                        <span class="kpi-icon"><i class="fa-solid fa-heart"></i></span>
+                    </div>
+                    <div class="kpi-value" id="engagement-rate">0%</div>
+                    <span class="kpi-trend up"><i class="fa-solid fa-arrow-up"></i> +0.6 pp</span>
+                    <div class="kpi-note">vs. previous month (4.2%)</div>
+                </div>
+                <div class="kpi-card" style="--kpi-accent:#00a8a8; --kpi-bg:rgba(0,168,168,0.12);">
+                    <div class="kpi-top">
+                        <span class="kpi-label">Total Followers</span>
+                        <span class="kpi-icon"><i class="fa-solid fa-users"></i></span>
+                    </div>
+                    <div class="kpi-value" id="total-followers">0</div>
+                    <span class="kpi-trend up"><i class="fa-solid fa-arrow-up"></i> 8,230 new</span>
+                    <div class="kpi-note">+5.5% growth this quarter</div>
+                </div>
+                <div class="kpi-card" style="--kpi-accent:#8b5cf6; --kpi-bg:rgba(139,92,246,0.12);">
+                    <div class="kpi-top">
+                        <span class="kpi-label">Content Published</span>
+                        <span class="kpi-icon"><i class="fa-solid fa-film"></i></span>
+                    </div>
+                    <div class="kpi-value" id="content-published">0</div>
+                    <span class="kpi-trend up"><i class="fa-solid fa-arrow-up"></i> 18%</span>
+                    <div class="kpi-note">32 Reels · 14 Videos · 18 Posts</div>
+                </div>
+            </div>
+
+            <!-- Platform Tables -->
+            <div class="tables-grid" id="tablesGrid">
+
+                <!-- Instagram -->
+                <div class="card platform-card" style="--platform-color:#e1306c;" data-platform="instagram">
+                    <div class="platform-header">
+                        <span class="platform-name"><i class="fa-brands fa-instagram"></i> Instagram</span>
+                        <span class="platform-stats" id="instagram-reach">0 reach</span>
+                    </div>
+                    <div class="table-scroll">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Content</th>
+                                    <th>Views</th>
+                                    <th>Likes</th>
+                                    <th>Reach</th>
+                                    <th class="country-col">Top Countries</th>
+                                </tr>
+                            </thead>
+                            <tbody id="instagram-table-body">
+                                <!-- Data will be loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-actions">
+                        <button class="btn view-more-btn" data-platform="instagram"><i class="fa-solid fa-expand"></i> View More</button>
+                        <button class="btn back-btn" data-platform="instagram"><i class="fa-solid fa-xmark"></i> Back</button>
+                    </div>
+                </div>
+
+                <!-- TikTok -->
+                <div class="card platform-card" style="--platform-color:#010101;" data-platform="tiktok">
+                    <div class="platform-header">
+                        <span class="platform-name"><i class="fa-brands fa-tiktok"></i> TikTok</span>
+                        <span class="platform-stats" id="tiktok-reach">0 reach</span>
+                    </div>
+                    <div class="table-scroll">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Content</th>
+                                    <th>Views</th>
+                                    <th>Likes</th>
+                                    <th>Reach</th>
+                                    <th class="country-col">Top Countries</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tiktok-table-body">
+                                <!-- Data will be loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-actions">
+                        <button class="btn view-more-btn" data-platform="tiktok"><i class="fa-solid fa-expand"></i> View More</button>
+                        <button class="btn back-btn" data-platform="tiktok"><i class="fa-solid fa-xmark"></i> Back</button>
+                    </div>
+                </div>
+
+                <!-- Facebook -->
+                <div class="card platform-card" style="--platform-color:#1877f2;" data-platform="facebook">
+                    <div class="platform-header">
+                        <span class="platform-name"><i class="fa-brands fa-facebook"></i> Facebook</span>
+                        <span class="platform-stats" id="facebook-reach">0 reach</span>
+                    </div>
+                    <div class="table-scroll">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Content</th>
+                                    <th>Views</th>
+                                    <th>Likes</th>
+                                    <th>Reach</th>
+                                    <th class="country-col">Top Countries</th>
+                                </tr>
+                            </thead>
+                            <tbody id="facebook-table-body">
+                                <!-- Data will be loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-actions">
+                        <button class="btn view-more-btn" data-platform="facebook"><i class="fa-solid fa-expand"></i> View More</button>
+                        <button class="btn back-btn" data-platform="facebook"><i class="fa-solid fa-xmark"></i> Back</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Trend Chart -->
+            <div class="card" style="margin-bottom:26px;">
+                <div class="card-header">
+                    <div>
+                        <span class="card-title">Content Performance Trend</span>
+                        <div class="card-subtitle">Monthly reach per platform · Jan – Jul 2026</div>
+                    </div>
+                    <span class="card-subtitle"><i class="fa-solid fa-circle-info"></i> Scale: 0 – 1.4M reach</span>
+                </div>
+                <div class="card-body">
+                    <div class="chart-wrapper">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════ TAB 2 : CONTENT IDEAS & SCHEDULE ═══════════════ -->
+        <div id="content-ideas" class="tab-content">
+
+            <div class="content-planner-header">
+                <div>
+                    <h3>Content Ideas &amp; Publishing Schedule</h3>
+                    <p>7-day rolling plan aligned with brand pillars and campaign goals</p>
+                </div>
+                <div class="platform-counts">
+                    <span class="kpi-trend"><i class="fa-brands fa-instagram"></i> 3 posts</span>
+                    <span class="kpi-trend"><i class="fa-brands fa-tiktok"></i> 2 posts</span>
+                    <span class="kpi-trend"><i class="fa-brands fa-facebook"></i> 2 posts</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="content-tools" style="margin-bottom: 8px;">
+                <button class="btn" id="addContentBtn"><i class="fa-solid fa-plus"></i> Add New Content</button>
+                <button class="btn btn-primary" id="suggestIdeasBtn"><i class="fa-solid fa-wand-magic-sparkles"></i> Suggest Ideas</button>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="instagram">Instagram</button>
+                <button class="filter-btn" data-filter="tiktok">TikTok</button>
+                <button class="filter-btn" data-filter="facebook">Facebook</button>
+            </div>
+
+            <!-- Add Content Form (hidden by default) -->
+            <div class="add-content-form" id="addContentForm" style="display: none;">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="newContentDate" class="form-control" value="2026-08-18">
+                    </div>
+                    <div class="form-group">
+                        <label>Platform</label>
+                        <select id="newContentPlatform" class="form-control">
+                            <option value="instagram">Instagram</option>
+                            <option value="tiktok">TikTok</option>
+                            <option value="facebook">Facebook</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Content Idea</label>
+                        <input type="text" id="newContentTitle" class="form-control" placeholder="Enter content idea">
+                    </div>
+                    <div class="form-group">
+                        <label>Format</label>
+                        <select id="newContentFormat" class="form-control">
+                            <option value="Reel">Reel</option>
+                            <option value="Video">Video</option>
+                            <option value="Carousel">Carousel</option>
+                            <option value="Photo">Photo</option>
+                            <option value="Post">Post</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Goal</label>
+                        <input type="text" id="newContentGoal" class="form-control" placeholder="e.g. Drive traffic">
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="newContentStatus" class="form-control">
+                            <option value="Draft">Draft</option>
+                            <option value="Approved">Approved</option>
+                            <option value="In Production">In Production</option>
+                            <option value="Scheduled">Scheduled</option>
+                            <option value="Published">Published</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-primary" id="saveContentBtn"><i class="fa-solid fa-check"></i> Add Content</button>
+                    <button class="btn" id="cancelContentBtn"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top:22px;">
+                <div class="card-header">
+                    <div>
+                        <span class="card-title">Next 7 Days — Content Calendar</span>
+                        <div class="card-subtitle">Aug 18 – Aug 24, 2026 · Publishing schedule by platform</div>
+                    </div>
+                    <span class="card-subtitle"><i class="fa-regular fa-calendar"></i> slots</span>
+                </div>
+                <div class="card-body" style="padding:0 0 4px 0;">
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Platform</th>
+                                <th>Content Idea</th>
+                                <th>Format</th>
+                                <th>Primary Goal</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contentScheduleBody">
+
+                            <!-- Row 1 -->
+                            <tr data-platform="instagram">
+                                <td><span class="schedule-date">Tue, 18 Aug 2026</span><div class="schedule-day">Tuesday</div></td>
+                                <td><span class="idea-platform" style="color:#e1306c;"><i class="fa-brands fa-instagram"></i> Instagram</span></td>
+                                <td class="content-name" style="max-width:300px;">Educator Spotlight: DIY Servo Workshop</td>
+                                <td><span class="type-badge type-reel">Reel</span></td>
+                                <td>Drive webinar sign-ups</td>
+                                <td><select class="status-select draft">
+                                    <option value="Draft" selected>Draft</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="In Production">In Production</option>
+                                    <option value="Scheduled">Scheduled</option>
+                                    <option value="Published">Published</option>
+                                </select></td>
+                                <td class="cell-actions">
+                                    <button class="btn-icon btn-edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn-icon btn-delete" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+                                </td>
+                            </tr>
+
+                            <!-- Row 2 -->
+                            <tr data-platform="tiktok">
+                                <td><span class="schedule-date">Wed, 19 Aug 2026</span><div class="schedule-day">Wednesday</div></td>
+                                <td><span class="idea-platform" style="color:#010101;"><i class="fa-brands fa-tiktok"></i> TikTok</span></td>
+                                <td class="content-name" style="max-width:300px;">Behind the Scenes: Soldering SMD Components</td>
+                                <td><span class="type-badge type-video">Video</span></td>
+                                <td>Increase engagement</td>
+                                <td><select class="status-select approved">
+                                    <option value="Draft">Draft</option>
+                                    <option value="Approved" selected>Approved</option>
+                                    <option value="In Production">In Production</option>
+                                    <option value="Scheduled">Scheduled</option>
+                                    <option value="Published">Published</option>
+                                </select></td>
+                                <td class="cell-actions">
+                                    <button class="btn-icon btn-edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn-icon btn-delete" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+                                </td>
+                            </tr>
+
+                            <!-- Row 3 -->
+                            <tr data-platform="facebook">
+                                <td><span class="schedule-date">Thu, 20 Aug 2026</span><div class="schedule-day">Thursday</div></td>
+                                <td><span class="idea-platform" style="color:#1877f2;"><i class="fa-brands fa-facebook"></i> Facebook</span></td>
+                                <td class="content-name" style="max-width:300px;">Customer Showcase: Automated Plant Watering</td>
+                                <td><span class="type-badge type-carousel">Carousel</span></td>
+                                <td>Drive traffic to blog</td>
+                                <td><select class="status-select scheduled">
+                                    <option value="Draft">Draft</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="In Production">In Production</option>
+                                    <option value="Scheduled" selected>Scheduled</option>
+                                    <option value="Published">Published</option>
+                                </select></td>
+                                <td class="cell-actions">
+                                    <button class="btn-icon btn-edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn-icon btn-delete" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+                                </td>
+                            </tr>
+
+                            <!-- Row 4 -->
+                            <tr data-platform="instagram">
+                                <td><span class="schedule-date">Fri, 21 Aug 2026</span><div class="schedule-day">Friday</div></td>
+                                <td><span class="idea-platform" style="color:#e1306c;"><i class="fa-brands fa-instagram"></i> Instagram</span></td>
+                                <td class="content-name" style="max-width:300px;">Quiz: Guess the Cytron Product from Macro Shot</td>
+                                <td><span class="type-badge type-carousel">Carousel</span></td>
+                                <td>Boost profile visits</td>
+                                <td><select class="status-select production">
+                                    <option value="Draft">Draft</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="In Production" selected>In Production</option>
+                                    <option value="Scheduled">Scheduled</option>
+                                    <option value="Published">Published</option>
+                                </select></td>
+                                <td class="cell-actions">
+                                    <button class="btn-icon btn-edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn-icon btn-delete" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+                                </td>
+                            </tr>
+
+                            <!-- Row 5 -->
+                            <tr data-platform="tiktok">
+                                <td><span class="schedule-date">Sat, 22 Aug 2026</span><div class="schedule-day">Saturday</div></td>
+                                <td><span class="idea-platform" style="color:#010101;"><i class="fa-brands fa-tiktok"></i> TikTok</span></td>
+                                <td class="content-name" style="max-width:300px;">Pico W Weather Station in 20 Seconds</td>
+                                <td><span class="type-badge type-video">Video</span></td>
+                                <td>Grow followers</td>
+                                <td><select class="status-select draft">
+                                    <option value="Draft" selected>Draft</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="In Production">In Production</option>
+                                    <option value="Scheduled">Scheduled</option>
+                                    <option value="Published">Published</option>
+                                </select></td>
+                                <td class="cell-actions">
+                                    <button class="btn-icon btn-edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn-icon btn-delete" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+                                </td>
+                            </tr>
+
+                            <!-- Row 6 -->
+                            <tr data-platform="facebook">
+                                <td><span class="schedule-date">Sun, 23 Aug 2026</span><div class="schedule-day">Sunday</div></td>
+                                <td><span class="idea-platform" style="color:#1877f2;"><i class="fa-brands fa-facebook"></i> Facebook</span></td>
+                                <td class="content-name" style="max-width:300px;">Back-to-School STEM Kit Promo</td>
+                                <td><span class="type-badge type-post">Post</span></td>
+                                <td>Conversions / promo code</td>
+                                <td><select class="status-select production">
+                                    <option value="Draft">Draft</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="In Production" selected>In Production</option>
+                                    <option value="Scheduled">Scheduled</option>
+                                    <option value="Published">Published</option>
+                                </select></td>
+                                <td class="cell-actions">
+                                    <button class="btn-icon btn-edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn-icon btn-delete" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+                                </td>
+                            </tr>
+
+                            <!-- Row 7 -->
+                            <tr data-platform="instagram">
+                                <td><span class="schedule-date">Mon, 24 Aug 2026</span><div class="schedule-day">Monday</div></td>
+                                <td><span class="idea-platform" style="color:#e1306c;"><i class="fa-brands fa-instagram"></i> Instagram</span></td>
+                                <td class="content-name" style="max-width:300px;">Student Testimonial + EDU Kit Unboxing</td>
+                                <td><span class="type-badge type-reel">Reel</span></td>
+                                <td>Educator outreach</td>
+                                <td><select class="status-select approved">
+                                    <option value="Draft">Draft</option>
+                                    <option value="Approved" selected>Approved</option>
+                                    <option value="In Production">In Production</option>
+                                    <option value="Scheduled">Scheduled</option>
+                                    <option value="Published">Published</option>
+                                </select></td>
+                                <td class="cell-actions">
+                                    <button class="btn-icon btn-edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn-icon btn-delete" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="footer">
+        <div>
+            © 2026 Cytron Technologies<br>
+            <span style="font-style:italic;">Sample data for demonstration purposes — metrics are illustrative.</span>
+        </div>
+        <div><i class="fa-solid fa-wand-magic-sparkles"></i> Prepared for Marketing Management Review · <a href="#">cytron.tech</a></div>
+    </footer>
+    
+    <!-- Chart.js & Script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="apps.js"></script>
+    
+</body>
+</html>
